@@ -421,3 +421,49 @@ html {
 .hero {
     padding-top: 160px;
 }
+
+/* ===== TESTIMONI MODERN ===== */
+.testimonial-modern {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.testimonial-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    font-style: italic;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.testimonial-name {
+    color: #0a7c7c;
+    font-weight: bold;
+}
+
+/* STRIP INDICATOR */
+.testimonial-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.testimonial-indicator .dot {
+    width: 30px;
+    height: 4px;
+    background: #d0d0d0;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.testimonial-indicator .dot.active {
+    background: #0a7c7c;
+}
+
+.testimonial-indicator .dot {
+    cursor: pointer;
+    pointer-events: auto;
+}

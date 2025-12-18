@@ -15,51 +15,101 @@ function revealOnScroll() {
 
 window.addEventListener('scroll', revealOnScroll);
 
-// TESTIMONI AUTO SLIDE
-let testimonialIndex = 0;
-const testimonials = document.querySelectorAll(".testimonial-item");
+// ===== TESTIMONI MODERN SLIDER (FINAL FIX) =====
+document.addEventListener("DOMContentLoaded", () => {
 
-function showTestimonial() {
-    testimonials.forEach(item => item.classList.remove("active"));
-    testimonialIndex = (testimonialIndex + 1) % testimonials.length;
-    testimonials[testimonialIndex].classList.add("active");
-}
-
-// tampilkan pertama kali
-if (testimonials.length > 0) {
-    testimonials[0].classList.add("active");
-    setInterval(showTestimonial, 4000); // ganti tiap 4 detik
-}
-
-// SWIPE TESTIMONI MOBILE
-let startX = 0;
-let endX = 0;
-
-const slider = document.querySelector(".testimonial-slider");
-
-if (slider) {
-    slider.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].clientX;
-    });
-
-    slider.addEventListener("touchend", (e) => {
-        endX = e.changedTouches[0].clientX;
-        handleSwipe();
-    });
-}
-
-function handleSwipe() {
-    const threshold = 50; // jarak minimal swipe
-    if (startX - endX > threshold) {
-        // swipe kiri → next
-        showTestimonial();
-    } else if (endX - startX > threshold) {
-        // swipe kanan → prev
-        testimonialIndex =
-            (testimonialIndex - 2 + testimonials.length) % testimonials.length;
-        showTestimonial();
+  const testimonialsData = [
+    {
+      text: "Pelayanannya sangat ramah dan terapinya terasa membantu. Badan jadi lebih ringan setelah terapi.",
+      name: "— Budi S. ⭐⭐⭐⭐⭐"
+    },
+    {
+      text: "Tempatnya bersih dan terapisnya profesional. Dijelaskan dengan baik sebelum terapi.",
+      name: "— Siti A. ⭐⭐⭐⭐⭐"
+    },
+    {
+      text: "Nyeri leher berkurang dan badan terasa lebih enak. Sangat direkomendasikan.",
+      name: "— Andi R. ⭐⭐⭐⭐⭐"
+    },
+    {
+      text: "Setelah terapi badan terasa jauh lebih enteng dan tidur jadi lebih nyenyak.",
+      name: "— Poppy A. ⭐⭐⭐⭐⭐"
+    },
+    {
+      text: "setelah terapi,masyaAllah badan jd lebih ringan..sakit kepala berkurang..barakallahufiyk pak..semoga berkah..dan sehat selalu..amiin ya rabb",
+      name: "— Melati A. ⭐⭐⭐⭐⭐"
+    },
+    {
+      text: "setelah terapi saya dan suami merasa badan lebih ringan dan enteng terutama d bagian kaki, alhmdullilah sangat ramah dan di kasih masukan yang positif , terimaksih pak reza sehat selalu dan di lancarkan terus usahannya 💐",
+      name: "— Tina R. ⭐⭐⭐⭐⭐"
+    },
+    {
+      text: "alhamdulilah abis di terapi disini badan terasa jauh lebih enteng dah enakeun top lah 🥰",
+      name: "— Muhammad A. ⭐⭐⭐⭐⭐"
+    },
+    {
+      text: "Sangat enak , sesudah di terapi badan jadi enteng dan enak , pokonya maju trus 💯👍",
+      name: "— Raihan H. ⭐⭐⭐⭐⭐"
+    },
+    {
+      text: "Setelah di body service, badan jadi lebih enak, naik tangga lebih ringan, nengok ke kiri udah nggak sakit. Alhamdulillah... Jazakallah Mas Reza. Semoga sehat selalu 🤲🙏🌷",
+      name: "— Kiayati Y. ⭐⭐⭐⭐⭐"
+    },
+    {
+      text: "Alhamdulillah leher yg td nya kaku dan mata yg terasa spt menusuk setelah di terapi menjadi enakan dan mata menjadi terang. Badan yg kaku m3njadi rileks. Dan yg paling penting sehabis di terapi tidur jd bs nyenyak. 👍",
+      name: "— Winda M. ⭐⭐⭐⭐⭐"
     }
-}
+  ];
+
+  let currentIndex = 0;
+  let interval;
+
+  const textEl = document.querySelector(".testimonial-text");
+  const nameEl = document.querySelector(".testimonial-name");
+  const indicator = document.getElementById("testimonialIndicator");
+
+  if (!textEl || !nameEl || !indicator) return;
+
+  testimonialsData.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "dot";
+
+    dot.addEventListener("click", () => {
+      goTo(i);
+      restartAuto();
+    });
+
+    indicator.appendChild(dot);
+  });
+
+  const dots = indicator.querySelectorAll(".dot");
+
+  function goTo(index) {
+    currentIndex = index;
+    textEl.textContent = `"${testimonialsData[index].text}"`;
+    nameEl.textContent = testimonialsData[index].name;
+
+    dots.forEach(d => d.classList.remove("active"));
+    dots[index].classList.add("active");
+  }
+
+  function startAuto() {
+    interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % testimonialsData.length;
+      goTo(currentIndex);
+    }, 4000);
+  }
+
+  function restartAuto() {
+    clearInterval(interval);
+    startAuto();
+  }
+
+  goTo(0);
+  startAuto();
+
+});
+
 
 // LIGHTBOX GALERI
 const galleryImages = document.querySelectorAll('.gallery img');
@@ -101,3 +151,4 @@ document.querySelectorAll(".nav-menu a").forEach(link => {
         navMenu.classList.remove("active");
     });
 });
+
