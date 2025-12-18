@@ -8,9 +8,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- NAVBAR -->
+<header class="navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <span>Matalogi</span><strong>Kiropraktis</strong>
+    </div>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="#beranda">Beranda</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#kontak" class="btn-nav">Konsultasi</a>
+    </nav>
+
+    <div class="hamburger" id="hamburger">
+      ☰
+    </div>
+  </div>
+</header>
 
     <!-- HERO -->
-    <header class="hero">
+    <header class="hero" id="beranda">
         <h1>Matalogi & Kiropraktis Bandung</h1>
         <p>Solusi Alami untuk Saraf, Tulang, dan Postur Tubuh</p>
         <a href="#kontak" class="btn-primary">Konsultasi Sekarang</a>
@@ -18,7 +38,7 @@
 
     <!-- LAYANAN -->
     <!-- ✅ reveal -->
-    <section class="container reveal">
+    <section class="container reveal" id="layanan">
         <h2>Layanan Kami</h2>
 
         <div class="cards">
@@ -41,7 +61,7 @@
 
     <!-- TESTIMONI -->
     <!-- ✅ reveal -->
-    <section class="container light reveal">
+    <section class="container light reveal" id="testimoni">
     <h2>Testimoni Pasien</h2>
 
     <div class="cards testimonial-slider">
@@ -146,7 +166,7 @@
     </section>
 
     <!-- GALERI PASIEN -->
-    <section class="container reveal">
+    <section class="container reveal" id="galeri">
     <h2>Galeri Pasien</h2>
 
     <div class="gallery">

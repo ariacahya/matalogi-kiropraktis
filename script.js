@@ -86,3 +86,18 @@ lightbox.addEventListener('click', (e) => {
         document.body.style.overflow = '';
     }
 });
+
+// NAVBAR TOGGLE
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+});
+
+// auto close setelah klik menu (mobile)
+document.querySelectorAll(".nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+    });
+});
