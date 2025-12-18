@@ -60,3 +60,29 @@ function handleSwipe() {
         showTestimonial();
     }
 }
+
+// LIGHTBOX GALERI
+const galleryImages = document.querySelectorAll('.gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.querySelector('.lightbox-img');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // lock scroll
+    });
+});
+
+lightboxClose.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});

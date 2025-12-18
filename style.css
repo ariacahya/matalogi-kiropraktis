@@ -11,11 +11,18 @@ body {
 
 /* HERO */
 .hero {
-    background: linear-gradient(135deg, #0a7c7c, #0f9b9b);
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("img/RUMAH.png") center / cover no-repeat;
+
     color: white;
-    padding: 80px 20px;
+    padding: 120px 20px;
     text-align: center;
 }
+
 
 .hero h1 {
     font-size: 40px;
@@ -253,3 +260,70 @@ body {
     margin: 8px 0;
 }
 
+/* GALERI PASIEN */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* LIGHTBOX GALERI */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    animation: zoomIn 0.3s ease;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 36px;
+    color: white;
+    cursor: pointer;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
